@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Look Infinito — Peluquería & Estética Barcelona</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF7F4;
+    --blush: #F2E8E1;
+    --rose: #D4A5A0;
+    --rose-deep: #B8706A;
+    --rose-muted: #E8C5BF;
+    --sand: #C9B8A8;
+    --dark: #2C2420;
+    --mid: #6B5B55;
+    --light: #A0908A;
+    --white: #FFFFFF;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(250,247,244,0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212,165,160,0.2);
+  }
+
+  .nav-logo {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--dark);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+
+  .nav-logo span {
+    color: var(--rose-deep);
+    font-style: italic;
+  }
+
+  .nav-cta {
+    background: var(--rose-deep);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .nav-cta:hover { background: var(--dark); transform: translateY(-1px); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 5vw 80px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #FAF7F4 0%, #F5ECE7 40%, #EDE0D8 100%);
+    z-index: 0;
+  }
+
+  /* decorative circles */
+  .hero-circle-1 {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,165,160,0.18) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    z-index: 0;
+  }
+
+  .hero-circle-2 {
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,184,168,0.15) 0%, transparent 70%);
+    bottom: -50px; left: 10%;
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--rose-deep);
+    background: rgba(212,165,160,0.15);
+    border: 1px solid rgba(212,165,160,0.4);
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--rose-deep);
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+
+  .btn-primary {
+    background: var(--rose-deep);
+    color: white;
+    border: none;
+    padding: 16px 36px;
+    border-radius: 50px;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s;
+    display: inline-block;
+    box-shadow: 0 8px 24px rgba(184,112,106,0.3);
+  }
+
+  .btn-primary:hover {
+    background: var(--dark);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(44,36,32,0.2);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--mid);
+    border: 1.5px solid rgba(107,91,85,0.3);
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--rose-deep);
+    color: var(--rose-deep);
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 24px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1s;
+  }
+
+  .badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: var(--mid);
+    font-weight: 400;
+  }
+
+  .badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--rose);
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 90px 5vw; }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--rose-deep);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: 20px;
+  }
+
+  .section-title em { font-style: italic; color: var(--rose-deep); }
+
+  /* ─── ABOUT ─── */
+  .about {
+    background: var(--white);
+  }
+
+  .about-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+    height: 440px;
+  }
+
+  .about-card {
+    position: absolute;
+    background: var(--blush);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .about-card-main {
+    width: 75%;
+    height: 88%;
+    top: 0; left: 0;
+    background: linear-gradient(160deg, #EDE0D8 0%, #DDD0C8 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border-radius: 28px;
+  }
+
+  .about-card-main svg { opacity: 0.35; }
+
+  .about-card-accent {
+    width: 55%;
+    height: 50%;
+    bottom: 0; right: 0;
+    background: var(--rose-deep);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    box-shadow: 0 16px 40px rgba(184,112,106,0.3);
+  }
+
+  .about-stat { text-align: center; }
+
+  .about-stat-num {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 300;
+    color: white;
+    line-height: 1;
+  }
+
+  .about-stat-label {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.75);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+    color: var(--mid);
+    line-height: 1.8;
+    margin-bottom: 16px;
+    font-weight: 300;
+  }
+
+  .about-pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .pillar {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .pillar-icon {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    background: rgba(212,165,160,0.15);
+    border: 1px solid rgba(212,165,160,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.1rem;
+  }
+
+  .pillar-text strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--dark);
+    margin-bottom: 2px;
+  }
+
+  .pillar-text span {
+    font-size: 0.83rem;
+    color: var(--light);
+    font-weight: 300;
+  }
+
+  /* ─── SERVICES ─── */
+  .services { background: var(--cream); }
+
+  .services-inner { max-width: 1100px; margin: 0 auto; }
+
+  .services-header { margin-bottom: 56px; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  .service-card {
+    background: var(--white);
+    border: 1px solid rgba(212,165,160,0.2);
+    border-radius: 24px;
+    padding: 36px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--rose-muted), var(--rose-deep));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(184,112,106,0.12);
+    border-color: rgba(212,165,160,0.5);
+  }
+
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .service-name {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .service-desc {
+    font-size: 0.85rem;
+    color: var(--light);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 20px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--rose-deep);
+    text-decoration: none;
+    cursor: pointer;
+    transition: gap 0.2s;
+  }
+
+  .service-link:hover { gap: 10px; }
+
+  /* ─── REVIEWS ─── */
+  .reviews {
+    background: linear-gradient(160deg, #EDE0D8 0%, #F2E8E1 50%, #FAF7F4 100%);
+  }
+
+  .reviews-inner { max-width: 1100px; margin: 0 auto; }
+
+  .reviews-header { margin-bottom: 48px; }
+
+  .stars {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 12px;
+  }
+
+  .star { color: var(--rose-deep); font-size: 1rem; }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .review-card {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 20px;
+    padding: 28px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .review-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(184,112,106,0.1);
+  }
+
+  .review-quote {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--rose-muted);
+    margin-bottom: -8px;
+  }
+
+  .review-text {
+    font-size: 0.9rem;
+    color: var(--mid);
+    line-height: 1.7;
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+
+  .review-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .review-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--rose-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    color: var(--rose-deep);
+    font-weight: 500;
+  }
+
+  .review-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--dark);
+  }
+
+  .review-via {
+    font-size: 0.75rem;
+    color: var(--light);
+    font-weight: 300;
+  }
+
+  .google-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    border: 1px solid rgba(212,165,160,0.3);
+    border-radius: 50px;
+    padding: 8px 18px;
+    margin-top: 40px;
+    font-size: 0.82rem;
+    color: var(--mid);
+    font-weight: 400;
+  }
+
+  .google-g {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4285F4, #EA4335, #FBBC05, #34A853);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  /* ─── HOW IT WORKS ─── */
+  .how { background: var(--white); }
+
+  .how-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .how-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 56px;
+    position: relative;
+  }
+
+  .how-steps::before {
+    content: '';
+    position: absolute;
+    top: 32px;
+    left: calc(16.67% + 20px);
+    right: calc(16.67% + 20px);
+    height: 1px;
+    background: linear-gradient(90deg, var(--rose-muted), var(--rose), var(--rose-muted));
+  }
+
+  .how-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 16px;
+  }
+
+  .step-num {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
+    background: var(--cream);
+    border: 1.5px solid var(--rose-muted);
+    color: var(--rose-deep);
+    transition: all 0.3s;
+  }
+
+  .how-step:hover .step-num {
+    background: var(--rose-deep);
+    color: white;
+    border-color: var(--rose-deep);
+    transform: scale(1.08);
+  }
+
+  .step-title {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--dark);
+  }
+
+  .step-desc {
+    font-size: 0.85rem;
+    color: var(--light);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ─── CTA FINAL ─── */
+  .cta-final {
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 100px 5vw;
+  }
+
+  .cta-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,165,160,0.12) 0%, transparent 70%);
+  }
+
+  .cta-bg-circle-1 { width: 700px; height: 700px; top: -200px; right: -100px; }
+  .cta-bg-circle-2 { width: 500px; height: 500px; bottom: -200px; left: -100px; }
+
+  .cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .cta-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--rose-muted);
+    margin-bottom: 20px;
+  }
+
+  .cta-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: white;
+    margin-bottom: 20px;
+  }
+
+  .cta-title em { font-style: italic; color: var(--rose-muted); }
+
+  .cta-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+
+  .cta-trust {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.4);
+    font-weight: 300;
+  }
+
+  .trust-check {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: rgba(212,165,160,0.2);
+    border: 1px solid rgba(212,165,160,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    color: var(--rose-muted);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #1A100D;
+    padding: 40px 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-logo {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+  }
+
+  .footer-logo span { font-style: italic; color: var(--rose-muted); }
+
+  .footer-text {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.25);
+    font-weight: 300;
+  }
+
+  /* ─── FLOATING BUTTON ─── */
+  .fab {
+    position: fixed;
+    bottom: 28px;
+    right: 5vw;
+    z-index: 99;
+    background: var(--rose-deep);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(184,112,106,0.45);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s;
+    animation: fadeUp 0.6s ease forwards 1.2s;
+    opacity: 0;
+  }
+
+  .fab:hover {
+    background: var(--dark);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(44,36,32,0.3);
+  }
+
+  .fab-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.6);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.4); opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 5vw; }
+
+    .about-inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .about-visual { height: 280px; }
+
+    .how-steps {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .how-steps::before { display: none; }
+
+    .how-step { flex-direction: row; text-align: left; gap: 20px; }
+
+    .step-num { flex-shrink: 0; }
+
+    footer {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .fab { right: 50%; transform: translateX(50%); }
+    .fab:hover { transform: translateX(50%) translateY(-2px); }
+  }
+
+  @media (max-width: 480px) {
+    section { padding: 70px 5vw; }
+    .hero { padding: 100px 5vw 60px; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Look <span>Infinito</span></a>
+  <a href="#reservar" class="nav-cta">Reservar cita</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-circle-1"></div>
+  <div class="hero-circle-2"></div>
+  <div class="hero-content">
+    <span class="hero-tag">Peluquería & Estética · Barcelona</span>
+    <h1 class="hero-title">Reserva tu cita<br>en <em>segundos</em></h1>
+    <p class="hero-subtitle">Peluquería y estética en Barcelona con atención personalizada y resultados profesionales. Porque mereces sentirte increíble.</p>
+    <div class="hero-actions">
+      <a href="#reservar" class="btn-primary">Reservar ahora →</a>
+      <a href="#servicios" class="btn-secondary">Ver servicios</a>
+    </div>
+    <div class="hero-badges">
+      <div class="badge"><span class="badge-dot"></span> Sin llamadas ni esperas</div>
+      <div class="badge"><span class="badge-dot"></span> Confirmación automática</div>
+      <div class="badge"><span class="badge-dot"></span> +200 clientas satisfechas</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="nosotras">
+  <div class="about-inner">
+    <div class="about-visual">
+      <div class="about-card about-card-main">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <circle cx="40" cy="28" r="16" stroke="#B8706A" stroke-width="1.5"/>
+          <path d="M18 68c0-12.15 9.85-22 22-22h0c12.15 0 22 9.85 22 22" stroke="#B8706A" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M56 20c4 2 7 6 7 11" stroke="#B8706A" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span style="font-family: var(--font-serif); font-size: 1.1rem; color: var(--rose-deep); opacity: 0.6; font-style: italic;">tu peluquería de confianza</span>
+      </div>
+      <div class="about-card about-card-accent">
+        <div class="about-stat">
+          <div class="about-stat-num">5★</div>
+          <div class="about-stat-label">Valoración media Google</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-text reveal">
+      <span class="section-tag">Sobre nosotras</span>
+      <h2 class="section-title">Un espacio donde<br><em>te sientes en casa</em></h2>
+      <p>En Look Infinito creemos que ir a la peluquería tiene que ser una experiencia, no solo un servicio. Nos tomamos el tiempo para conocerte, entender lo que necesitas y darte exactamente el resultado que buscas.</p>
+      <p>Llevamos años cuidando el cabello y la estética de nuestras clientas en Barcelona con mimo, profesionalidad y mucho cariño.</p>
+
+      <div class="about-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">🤝</div>
+          <div class="pillar-text">
+            <strong>Trato cercano y de confianza</strong>
+            <span>Como venir a casa de una amiga que sabe lo que hace</span>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">✨</div>
+          <div class="pillar-text">
+            <strong>Resultados profesionales</strong>
+            <span>Técnicas y productos de primera calidad para tu cabello</span>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">💬</div>
+          <div class="pillar-text">
+            <strong>Asesoramiento personalizado</strong>
+            <span>Te aconsejamos lo mejor según tu cabello y estilo de vida</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="servicios">
+  <div class="services-inner">
+    <div class="services-header reveal">
+      <span class="section-tag">Nuestros servicios</span>
+      <h2 class="section-title">Todo lo que necesitas<br><em>en un solo lugar</em></h2>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <span class="service-icon">✂️</span>
+        <div class="service-name">Corte de pelo</div>
+        <p class="service-desc">Cortes adaptados a tu rostro, tu estilo y tu personalidad. Siempre con asesoramiento incluido.</p>
+        <a href="#reservar" class="service-link">Reservar <span>→</span></a>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">🎨</span>
+        <div class="service-name">Coloración y mechas</div>
+        <p class="service-desc">Color con técnica y precisión. Mechas balayage, babylights, tintes full y mucho más para que luzcas espectacular.</p>
+        <a href="#reservar" class="service-link">Reservar <span>→</span></a>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">💅</span>
+        <div class="service-name">Manicura y pedicura</div>
+        <p class="service-desc">Manos y pies cuidados al detalle. Gel, semipermanente, manicura clásica y más para que te sientas perfecta de arriba a abajo.</p>
+        <a href="#reservar" class="service-link">Reservar <span>→</span></a>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">💆‍♀️</span>
+        <div class="service-name">Tratamientos capilares</div>
+        <p class="service-desc">Keratina, hidratación profunda, reconstrucción capilar. Tu cabello sano, brillante y manejable desde la primera sesión.</p>
+        <a href="#reservar" class="service-link">Reservar <span>→</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="resenas">
+  <div class="reviews-inner">
+    <div class="reviews-header reveal">
+      <span class="section-tag">Lo que dicen nuestras clientas</span>
+      <h2 class="section-title">Ellas ya <em>lo vivieron</em></h2>
+      <div class="stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        <span style="font-size:0.85rem; color: var(--mid); margin-left: 10px; font-weight: 300;">Valoración 5.0 en Google</span>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-quote">"</div>
+        <p class="review-text">Extraordinario servicio y profesionales. Muy contenta con mi color y corte cada vez que voy. Además te hacen sentir como en casa.</p>
+        <div class="review-author">
+          <div class="review-avatar">M</div>
+          <div>
+            <div class="review-name">María G.</div>
+            <div class="review-via">Reseña en Google</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-quote">"</div>
+        <p class="review-text">Muy buen servicio. Me sentí muy cómoda y el resultado fue increíble. Ahora siempre voy ahí.</p>
+        <div class="review-author">
+          <div class="review-avatar">L</div>
+          <div>
+            <div class="review-name">Laura P.</div>
+            <div class="review-via">Reseña en Google</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-quote">"</div>
+        <p class="review-text">Yanira es espectacular, muy profesional y detallista. Siempre te aconseja lo mejor para tu cabello.</p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div>
+            <div class="review-name">Ana R.</div>
+            <div class="review-via">Reseña en Google</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-quote">"</div>
+        <p class="review-text">Calidad-precio increíble. Trato excelente y resultados muy profesionales. 100% recomendable.</p>
+        <div class="review-author">
+          <div class="review-avatar">C</div>
+          <div>
+            <div class="review-name">Carmen S.</div>
+            <div class="review-via">Reseña en Google</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px;">
+      <span class="google-badge">
+        <span class="google-g">G</span>
+        Todas las reseñas verificadas en Google Maps
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="como">
+  <div class="how-inner reveal">
+    <span class="section-tag">Proceso</span>
+    <h2 class="section-title">Reservar es <em>así de fácil</em></h2>
+    <p style="color: var(--light); font-weight: 300; font-size: 0.95rem; max-width: 480px; margin: 0 auto;">Sin llamadas, sin esperas, sin complicaciones. En menos de 2 minutos tienes tu cita confirmada.</p>
+
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Elige tu servicio</div>
+          <div class="step-desc">Selecciona el tratamiento que necesitas de nuestra carta completa</div>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Selecciona tu cita</div>
+          <div class="step-desc">Elige el día y la hora que mejor encaja en tu agenda</div>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">Confirmación automática</div>
+          <div class="step-desc">Recibes confirmación al instante. Solo tienes que venir y disfrutar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final" id="reservar">
+  <div class="cta-bg-circle cta-bg-circle-1"></div>
+  <div class="cta-bg-circle cta-bg-circle-2"></div>
+  <div class="cta-inner reveal">
+    <span class="cta-tag">¿Lista para tu cambio?</span>
+    <h2 class="cta-title">Reserva tu cita<br>sin llamadas <em>ni esperas</em></h2>
+    <p class="cta-sub">Únete a cientos de clientas que ya disfrutan de un servicio de peluquería y estética de primera en el corazón de Barcelona.</p>
+    <a href="https://wa.me/34600000000?text=Hola,%20quería%20reservar%20una%20cita%20en%20Look%20Infinito" target="_blank" class="btn-primary" style="font-size: 1rem; padding: 18px 44px; box-shadow: 0 12px 36px rgba(184,112,106,0.4);">
+      Reservar mi cita ahora →
+    </a>
+    <div class="cta-trust">
+      <div class="trust-item"><span class="trust-check">✓</span> Sin compromiso</div>
+      <div class="trust-item"><span class="trust-check">✓</span> Confirmación inmediata</div>
+      <div class="trust-item"><span class="trust-check">✓</span> Cancela cuando quieras</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Look <span>Infinito</span> · Peluquería y Estética</div>
+  <div class="footer-text">Barcelona · © 2025 Look Infinito. Todos los derechos reservados.</div>
+</footer>
+
+<!-- FLOATING BUTTON -->
+<a href="#reservar" class="fab">
+  <span class="fab-dot"></span>
+  Reservar cita
+</a>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Hide FAB when at CTA section
+  const fabEl = document.querySelector('.fab');
+  const ctaSection = document.getElementById('reservar');
+  const fabObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      fabEl.style.opacity = entry.isIntersecting ? '0' : '';
+      fabEl.style.pointerEvents = entry.isIntersecting ? 'none' : '';
+    });
+  }, { threshold: 0.3 });
+  fabObserver.observe(ctaSection);
+
+  // Smooth nav background on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      nav.style.boxShadow = '0 2px 20px rgba(44,36,32,0.08)';
+    } else {
+      nav.style.boxShadow = 'none';
+    }
+  });
+</script>
+</body>
+</html>
